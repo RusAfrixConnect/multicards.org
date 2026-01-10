@@ -1,0 +1,59 @@
+{
+  "site": {
+    "name": "MultiCards.org",
+    "version": "1.0.0",
+    "description": "Marketplace de cartes collection - Pokémon, Football, Hockey, Clubs",
+    "languages": ["fr", "en", "ru", "zh"],
+    "currencies": ["EUR", "USD", "RUB"]
+  },
+  "categories": [
+    {
+      "id": "pokemon",
+      "name": "Pokémon",
+      "icon": "fa-dragon",
+      "color": "#ffcb05",
+      "description": "Cartes Pokémon collection et jeu"
+    },
+    {
+      "id": "football",
+      "name": "Football",
+      "icon": "fa-futbol",
+      "color": "#27ae60",
+      "description": "Cartes joueurs et équipes de football"
+    },
+    {
+      "id": "clubs",
+      "name": "Clubs",
+      "icon": "fa-shield-alt",
+      "color": "#ff9f43",
+      "description": "Cartes de clubs de football"
+    },
+    {
+      "id": "moments",
+      "name": "Moments Historiques",
+      "icon": "fa-trophy",
+      "color": "#f1c40f",
+      "description": "Moments légendaires du football"
+    },
+    {
+      "id": "collection",
+      "name": "Collection Premium",
+      "icon": "fa-crown",
+      "color": "#f1c40f",
+      "description": "Cartes collection exclusives"
+    },
+    {
+      "id": "hockey",
+      "name": "Hockey",
+      "icon": "fa-hockey-puck",
+      "color": "#1e88e5",
+      "description": "Cartes de hockey NHL et international"
+    }
+  ],
+  "stats": {
+    "total_products": 86,
+    "total_value_eur": 21800,
+    "categories_count": 6,
+    "last_updated": "2024-01-15"
+  }
+}
