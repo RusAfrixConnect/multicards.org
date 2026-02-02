@@ -1,23 +1,396 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldCards.org - En ligne !</title>
+    <title>WorldCards.org - Le Marché Mondial des Cartes Collection</title>
+    <meta name="description" content="Plateforme mondiale pour collectionneurs de cartes Pokémon, Football, Hockey et plus. Achetez, vendez, échangez en toute sécurité.">
+    <meta name="keywords" content="cartes, collection, pokémon, football, hockey, trading cards, collectionneur">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>🌍 WorldCards.org</h1>
-        <p>Le marché mondial des cartes collection</p>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>WorldCards.org</h1>
+                    <p>Le marché mondial des cartes collection</p>
+                </div>
+            </div>
+            
+            <div class="header-controls">
+                <div class="world-globe">
+                    <i class="fas fa-globe"></i>
+                    <span>Global</span>
+                </div>
+                
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="zh">🇨🇳 中文</option>
+                    </select>
+                </div>
+                
+                <div class="currency-selector">
+                    <select id="currencySelect">
+                        <option value="EUR">€ EUR</option>
+                        <option value="USD">$ USD</option>
+                        <option value="RUB">₽ RUB</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#" data-lang-key="home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-lang-key="categories">Catégories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#pokemon" data-lang-key="pokemon">Pokémon</a>
+                            <a href="#football" data-lang-key="football">Football</a>
+                            <a href="#clubs" data-lang-key="clubs">Clubs</a>
+                            <a href="#moments" data-lang-key="moments">Moments</a>
+                            <a href="#collection" data-lang-key="collection">Collection</a>
+                            <a href="#hockey" data-lang-key="hockey">Hockey</a>
+                        </div>
+                    </li>
+                    <li><a href="#" data-lang-key="sell">Vendre</a></li>
+                    <li><a href="#" data-lang-key="about">À propos</a></li>
+                    <li><a href="#" data-lang-key="contact">Contact</a></li>
+                </ul>
+                
+                <div class="user-actions">
+                    <a href="#" class="btn-login" data-lang-key="login">Connexion</a>
+                    <a href="#" class="btn-register" data-lang-key="register">Inscription</a>
+                    <a href="#" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
     </header>
-    
-    <main>
-        <h2>Site en construction...</h2>
-        <p>Le site sera bientôt disponible !</p>
-        <button>Explorer les cartes</button>
-    </main>
-    
+
+    <!-- Bannière -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 data-lang-key="hero_title">La plateforme mondiale des cartes collection</h2>
+                <p data-lang-key="hero_subtitle">Connectez-vous à une communauté globale de collectionneurs. Pokémon, Football, Hockey - Votre marché mondial.</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher une carte, un personnage, une équipe..." data-lang-key="search_placeholder">
+                    <button data-lang-key="search">
+                        <i class="fas fa-search"></i> Rechercher
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="number">850+</span>
+                        <span class="label">Cartes disponibles</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">42</span>
+                        <span class="label">Pays représentés</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">€210K+</span>
+                        <span class="label">Volume d'échanges</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catégories -->
+    <section class="categories">
+        <div class="container">
+            <h2 data-lang-key="our_categories">Explorez le Monde des Cartes</h2>
+            <div class="categories-grid">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cartes en vedette -->
+    <section class="featured">
+        <div class="container">
+            <h2 data-lang-key="featured_cards">Cartes Mondiales en Vedette</h2>
+            <div class="products-grid">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Football -->
+    <section class="football-players-section" id="football">
+        <div class="container">
+            <h2><i class="fas fa-futbol"></i> Cartes Joueurs de Football</h2>
+            <div class="players-filter">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="icon">Icons</button>
+                <button class="filter-btn" data-filter="ultra">Ultra Rare</button>
+                <button class="filter-btn" data-filter="young">Jeunes</button>
+                <button class="filter-btn" data-filter="legend">Légendes</button>
+                <button class="filter-btn" data-filter="brazil">
+                    <i class="fas fa-flag flag-brazil"></i> Brésil
+                </button>
+                <button class="filter-btn" data-filter="argentina">
+                    <i class="fas fa-flag flag-argentina"></i> Argentine
+                </button>
+                <button class="filter-btn" data-filter="italy">
+                    <i class="fas fa-flag flag-italy"></i> Italie
+                </button>
+            </div>
+            <div class="players-grid">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Pokémon -->
+    <section class="pokemon-section" id="pokemon">
+        <div class="container">
+            <div class="pokemon-header">
+                <h2><i class="fas fa-dragon"></i> Cartes Pokémon Mondiales</h2>
+                <p>Collectionnez les cartes Pokémon les plus recherchées à travers le monde</p>
+            </div>
+            
+            <div class="pokemon-controls">
+                <div class="type-filters">
+                    <button class="type-filter active" data-type="all">Tous</button>
+                    <button class="type-filter" data-type="psychic" style="background: #f85888;">Psy</button>
+                    <button class="type-filter" data-type="water" style="background: #6890f0;">Eau</button>
+                    <button class="type-filter" data-type="fire" style="background: #f08030;">Feu</button>
+                    <button class="type-filter" data-type="grass" style="background: #78c850;">Plante</button>
+                </div>
+                
+                <div class="pokemon-search">
+                    <input type="text" placeholder="Rechercher un Pokémon..." id="pokemonSearch">
+                    <select id="generationFilter">
+                        <option value="all">Toutes générations</option>
+                        <option value="1">Gen 1</option>
+                        <option value="2">Gen 2</option>
+                        <option value="3">Gen 3</option>
+                        <option value="4">Gen 4</option>
+                        <option value="5">Gen 5</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="pokemon-stats">
+                <div class="pokemon-stat">
+                    <span class="stat-value">21</span>
+                    <span class="stat-label">Cartes</span>
+                </div>
+                <div class="pokemon-stat">
+                    <span class="stat-value">12</span>
+                    <span class="stat-label">Types</span>
+                </div>
+                <div class="pokemon-stat">
+                    <span class="stat-value">9</span>
+                    <span class="stat-label">Générations</span>
+                </div>
+                <div class="pokemon-stat">
+                    <span class="stat-value">€1,448</span>
+                    <span class="stat-label">Valeur</span>
+                </div>
+            </div>
+            
+            <div class="pokemon-grid">
+                <!-- Les cartes Pokémon seront chargées ici -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Clubs -->
+    <section class="clubs-section" id="clubs">
+        <div class="container">
+            <div class="clubs-header">
+                <h2><i class="fas fa-shield-alt"></i> Cartes de Clubs Mondiaux</h2>
+                <p>Les plus grands clubs de football du monde entier</p>
+            </div>
+            
+            <div class="clubs-controls">
+                <div class="continent-filter">
+                    <button class="continent-btn active" data-continent="all">Tous</button>
+                    <button class="continent-btn" data-continent="europe">
+                        <i class="fas fa-globe-europe"></i> Europe
+                    </button>
+                    <button class="continent-btn" data-continent="southamerica">
+                        <i class="fas fa-globe-americas"></i> Amérique du Sud
+                    </button>
+                </div>
+            </div>
+            
+            <div class="clubs-stats">
+                <div class="club-stat">
+                    <div class="stat-icon">🏛️</div>
+                    <div class="stat-content">
+                        <div class="stat-number">21</div>
+                        <div class="stat-label">Clubs</div>
+                    </div>
+                </div>
+                <div class="club-stat">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-content">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Pays</div>
+                    </div>
+                </div>
+                <div class="club-stat">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <div class="stat-number">859</div>
+                        <div class="stat-label">Titres</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clubs-grid">
+                <!-- Les cartes clubs seront chargées ici -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Moments -->
+    <section class="moments-section" id="moments">
+        <div class="container">
+            <div class="moments-header">
+                <h2><i class="fas fa-trophy"></i> Moments Historiques Mondiaux</h2>
+                <p>Les plus grandes victoires du football mondial</p>
+            </div>
+            
+            <div class="moments-grid">
+                <!-- Les cartes moments seront chargées ici -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Hockey -->
+    <section id="hockey" class="hockey-section">
+        <div class="container">
+            <h2><i class="fas fa-hockey-puck"></i> Cartes de Hockey Mondial</h2>
+            <p>Collectionnez les légendes du hockey de la NHL à la KHL</p>
+            
+            <div class="hockey-stats">
+                <div class="stat">
+                    <span class="number">680+</span>
+                    <span class="label">Cartes disponibles</span>
+                </div>
+                <div class="stat">
+                    <span class="number">150+</span>
+                    <span class="label">Joueurs</span>
+                </div>
+                <div class="stat">
+                    <span class="number">15</span>
+                    <span class="label">Pays</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-players">
+        <div class="container">
+            <h2>Prêt à rejoindre la communauté mondiale ?</h2>
+            <p>Rejoignez des milliers de collectionneurs sur WorldCards.org</p>
+            <div class="cta-buttons">
+                <button class="btn-primary">
+                    <i class="fas fa-shopping-cart"></i> Explorer la boutique
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-user-plus"></i> Créer un compte
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>WorldCards.org</h3>
+                    </div>
+                    <p data-lang-key="about_text">La plateforme mondiale pour les collectionneurs de cartes. Authenticité garantie, communauté globale.</p>
+                    <div class="world-flags">
+                        <span>🌍</span>
+                        <span>🇺🇸</span>
+                        <span>🇪🇺</span>
+                        <span>🇯🇵</span>
+                        <span>🇷🇺</span>
+                        <span>🇨🇳</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Catégories Mondiales</h3>
+                    <ul>
+                        <li><a href="#pokemon">Pokémon Global</a></li>
+                        <li><a href="#football">Football Mondial</a></li>
+                        <li><a href="#clubs">Clubs Internationaux</a></li>
+                        <li><a href="#moments">Moments Historiques</a></li>
+                        <li><a href="#hockey">Hockey International</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-lang-key="contact">Contact Global</h3>
+                    <p><i class="fas fa-envelope"></i> contact@worldcards.org</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Paris, France</p>
+                    <div class="social">
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter Mondiale</h3>
+                    <p>Recevez les nouvelles cartes en exclusivité</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Votre email">
+                        <button>S'abonner</button>
+                    </div>
+                    <p class="newsletter-note">+5,000 collectionneurs déjà inscrits</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 WorldCards.org - Plateforme Mondiale de Cartes Collection</p>
+                <p class="footer-links">
+                    <a href="#">Mentions légales</a> • 
+                    <a href="#">CGV</a> • 
+                    <a href="#">Confidentialité</a> • 
+                    <a href="#">FAQ</a> • 
+                    <a href="#">Support</a>
+                </p>
+                <p class="language-note">
+                    <i class="fas fa-language"></i> Disponible en Français, English, Русский, 中文
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="lang.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
