@@ -1,59 +1,98 @@
 {
   "site": {
-    "name": "MultiCards.org",
+    "name": "WorldCards.org",
     "version": "1.0.0",
-    "description": "Marketplace de cartes collection - Pokémon, Football, Hockey, Clubs",
-    "languages": ["fr", "en", "ru", "zh"],
-    "currencies": ["EUR", "USD", "RUB"]
+    "description": "Plateforme mondiale de cartes collection",
+    "launch_date": "2024-01-15",
+    "author": "WorldCards Team"
   },
-  "categories": [
+  "metadata": {
+    "total_products": 86,
+    "total_categories": 6,
+    "total_value_eur": 21800,
+    "last_updated": "2024-01-15"
+  },
+  "categories_summary": [
     {
       "id": "pokemon",
       "name": "Pokémon",
-      "icon": "fa-dragon",
-      "color": "#ffcb05",
+      "count": 21,
+      "total_value": 1448,
       "description": "Cartes Pokémon collection et jeu"
     },
     {
       "id": "football",
       "name": "Football",
-      "icon": "fa-futbol",
-      "color": "#27ae60",
+      "count": 31,
+      "total_value": 7250,
       "description": "Cartes joueurs et équipes de football"
     },
     {
       "id": "clubs",
       "name": "Clubs",
-      "icon": "fa-shield-alt",
-      "color": "#ff9f43",
-      "description": "Cartes de clubs de football"
+      "count": 21,
+      "total_value": 6760,
+      "description": "Cartes de clubs de football internationaux"
     },
     {
       "id": "moments",
       "name": "Moments Historiques",
-      "icon": "fa-trophy",
-      "color": "#f1c40f",
-      "description": "Moments légendaires du football"
+      "count": 7,
+      "total_value": 2700,
+      "description": "Moments légendaires du football mondial"
     },
     {
       "id": "collection",
       "name": "Collection Premium",
-      "icon": "fa-crown",
-      "color": "#f1c40f",
-      "description": "Cartes collection exclusives"
+      "count": 13,
+      "total_value": 9270,
+      "description": "Cartes collection exclusives et éditions limitées"
     },
     {
       "id": "hockey",
       "name": "Hockey",
-      "icon": "fa-hockey-puck",
-      "color": "#1e88e5",
+      "count": 3,
+      "total_value": 372,
       "description": "Cartes de hockey NHL et international"
     }
   ],
-  "stats": {
-    "total_products": 86,
-    "total_value_eur": 21800,
-    "categories_count": 6,
-    "last_updated": "2024-01-15"
+  "currencies": {
+    "EUR": {
+      "symbol": "€",
+      "name": "Euro",
+      "default": true
+    },
+    "USD": {
+      "symbol": "$",
+      "name": "US Dollar",
+      "exchange_rate": 1.08
+    },
+    "RUB": {
+      "symbol": "₽",
+      "name": "Russian Ruble",
+      "exchange_rate": 98.5
+    }
+  },
+  "languages": {
+    "fr": {
+      "name": "Français",
+      "native": "Français",
+      "flag": "🇫🇷"
+    },
+    "en": {
+      "name": "English",
+      "native": "English",
+      "flag": "🇬🇧"
+    },
+    "ru": {
+      "name": "Russian",
+      "native": "Русский",
+      "flag": "🇷🇺"
+    },
+    "zh": {
+      "name": "Chinese",
+      "native": "中文",
+      "flag": "🇨🇳"
+    }
   }
 }
