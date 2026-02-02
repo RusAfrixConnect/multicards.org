@@ -1,4 +1,14 @@
-/* Reset et base */
+/* Reset et Variables */
+:root {
+    --world-red: #ff6b6b;
+    --world-orange: #ee5a24;
+    --world-blue: #3498db;
+    --world-green: #2ecc71;
+    --world-purple: #9b59b6;
+    --world-dark: #2c3e50;
+    --world-light: #ecf0f1;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,11 +30,12 @@ body {
 
 /* Header */
 header {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 header .container {
@@ -34,37 +45,74 @@ header .container {
     padding: 15px 20px;
 }
 
-.logo h1 {
-    color: #2c3e50;
-    font-size: 28px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.logo p {
+.logo-icon {
+    font-size: 32px;
+    color: var(--world-red);
+    animation: spinGlobe 20s linear infinite;
+}
+
+@keyframes spinGlobe {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.logo-text h1 {
+    color: var(--world-dark);
+    font-size: 28px;
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.logo-text p {
     color: #7f8c8d;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .header-controls {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
 }
 
-select {
+.world-globe {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
+    color: white;
     padding: 8px 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.world-globe i {
+    font-size: 16px;
+}
+
+select {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
     background: white;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s;
+    min-width: 120px;
 }
 
 select:hover {
-    border-color: #667eea;
+    border-color: var(--world-red);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
 /* Navigation */
@@ -72,28 +120,29 @@ nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background: #2c3e50;
-    border-radius: 0 0 10px 10px;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, var(--world-dark), #34495e);
+    border-radius: 0 0 15px 15px;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 25px;
+    gap: 30px;
 }
 
 .nav-menu a {
     color: white;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     padding: 10px 0;
     position: relative;
-    transition: color 0.3s;
+    transition: all 0.3s;
+    font-size: 15px;
 }
 
 .nav-menu a:hover {
-    color: #667eea;
+    color: var(--world-red);
 }
 
 .nav-menu a:hover::after {
@@ -103,7 +152,7 @@ nav .container {
     left: 0;
     width: 100%;
     height: 3px;
-    background: #667eea;
+    background: var(--world-red);
     border-radius: 2px;
 }
 
@@ -117,27 +166,35 @@ nav .container {
     position: absolute;
     background: white;
     min-width: 220px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 12px;
     z-index: 1;
     padding: 10px 0;
     top: 100%;
+    border: 1px solid #eee;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .dropdown-content a {
-    color: #333 !important;
+    color: var(--world-dark) !important;
     padding: 12px 20px;
     display: block;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
 }
 
 .dropdown-content a:hover {
-    background: #f8f9fa;
-    color: #667eea !important;
+    background: linear-gradient(90deg, rgba(255,107,107,0.1), rgba(238,90,36,0.1));
+    color: var(--world-red) !important;
 }
 
 /* User Actions */
@@ -149,79 +206,109 @@ nav .container {
 
 .btn-login, .btn-register {
     padding: 10px 25px;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s;
+    font-size: 14px;
 }
 
 .btn-login {
-    color: #667eea;
-    border: 2px solid #667eea;
+    color: var(--world-red);
+    border: 2px solid var(--world-red);
 }
 
 .btn-register {
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
     color: white;
 }
 
 .btn-login:hover {
-    background: #667eea;
+    background: var(--world-red);
     color: white;
 }
 
 .btn-register:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
 }
 
 .cart-btn {
     position: relative;
     background: white;
     padding: 10px;
-    border-radius: 8px;
-    color: #2c3e50;
+    border-radius: 10px;
+    color: var(--world-dark);
     font-size: 20px;
+    transition: all 0.3s;
+}
+
+.cart-btn:hover {
+    background: var(--world-red);
+    color: white;
 }
 
 .cart-count {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: #e74c3c;
+    background: var(--world-red);
     color: white;
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 50%;
+    font-weight: 700;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)),
-                url('https://images.unsplash.com/photo-1613771404721-1f92d799e49f?auto=format&fit=crop&w=1600');
+    background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.9)),
+                url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600');
     background-size: cover;
+    background-position: center;
     color: white;
-    padding: 100px 0;
+    padding: 120px 0 80px;
     text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h2 {
-    font-size: 48px;
+    font-size: 52px;
     margin-bottom: 20px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    line-height: 1.2;
 }
 
 .hero p {
     font-size: 20px;
     margin-bottom: 40px;
     opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search-bar {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 50px;
     display: flex;
     gap: 10px;
 }
@@ -232,22 +319,55 @@ nav .container {
     border: none;
     border-radius: 50px;
     font-size: 16px;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.95);
 }
 
 .search-bar button {
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
     color: white;
     border: none;
     padding: 0 40px;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
 }
 
 .search-bar button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.hero-stats .stat {
+    text-align: center;
+}
+
+.hero-stats .number {
+    display: block;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--world-red);
+    margin-bottom: 5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero-stats .label {
+    font-size: 16px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Categories */
@@ -260,7 +380,13 @@ nav .container {
     text-align: center;
     font-size: 36px;
     margin-bottom: 50px;
-    color: #2c3e50;
+    color: var(--world-dark);
+}
+
+.categories h2 {
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .categories-grid {
@@ -271,40 +397,44 @@ nav .container {
 
 .category-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     transition: all 0.3s;
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 25px;
     position: relative;
+    border: 2px solid transparent;
 }
 
 .category-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-color: var(--world-red);
 }
 
 .category-card i {
     font-size: 48px;
     margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .category-card h3 {
     font-size: 22px;
     margin-bottom: 10px;
+    color: var(--world-dark);
 }
 
-.category-card.pokemon i { color: #ffcb05; }
-.category-card.onepiece i { color: #c62828; }
-.category-card.football i { color: #27ae60; }
-.category-card.teams i { color: #3498db; }
-.category-card.moments i { color: #9b59b6; }
-.category-card.collector i { color: #e74c3c; }
-.category-card.russia i { color: #2ecc71; }
-.category-card.clubs i { color: #ff9f43; }
-.category-card.collection i { color: #f1c40f; }
-.category-card.hockey i { color: #1e88e5; }
+.category-card .btn-view {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--world-red);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
 
 /* Products Grid */
 .products-grid {
@@ -315,20 +445,22 @@ nav .container {
 
 .product-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     transition: all 0.3s;
+    border: 2px solid transparent;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    border-color: var(--world-red);
 }
 
 .product-image {
     height: 200px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--world-red), var(--world-orange));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -342,24 +474,26 @@ nav .container {
 
 .product-title {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 10px;
-    color: #2c3e50;
+    color: var(--world-dark);
 }
 
 .product-category {
     display: inline-block;
-    background: #eee;
-    padding: 5px 10px;
+    background: #f8f9fa;
+    padding: 5px 12px;
     border-radius: 20px;
     font-size: 12px;
     margin-bottom: 15px;
+    color: var(--world-red);
+    font-weight: 600;
 }
 
 .product-price {
     font-size: 24px;
-    font-weight: 700;
-    color: #2c3e50;
+    font-weight: 800;
+    color: var(--world-dark);
     margin-bottom: 15px;
 }
 
@@ -370,21 +504,23 @@ nav .container {
 
 .btn-add-cart {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    padding: 14px;
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
+    font-size: 15px;
 }
 
 .btn-add-cart:hover {
     opacity: 0.9;
+    transform: translateY(-2px);
 }
 
-/* Section Football Players */
+/* Section Football */
 .football-players-section {
     padding: 80px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -394,18 +530,18 @@ nav .container {
     text-align: center;
     font-size: 36px;
     margin-bottom: 40px;
-    color: #2c3e50;
+    color: var(--world-dark);
 }
 
 .football-players-section h2 i {
-    color: #27ae60;
+    color: var(--world-orange);
     margin-right: 15px;
 }
 
 .players-filter {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     margin-bottom: 40px;
     flex-wrap: wrap;
 }
@@ -413,20 +549,37 @@ nav .container {
 .filter-btn {
     padding: 12px 25px;
     background: white;
-    border: 2px solid #ddd;
+    border: 2px solid #e0e0e0;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
     color: #555;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .filter-btn.active,
 .filter-btn:hover {
-    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
     color: white;
-    border-color: #27ae60;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
 }
+
+.flag-brazil, .flag-argentina, .flag-italy {
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+}
+
+.flag-brazil { background: linear-gradient(135deg, #009c3b 50%, #ffdf00 50%); }
+.flag-argentina { background: linear-gradient(to bottom, #75aadb 33%, white 33%, white 67%, #75aadb 67%); }
+.flag-italy { background: linear-gradient(to right, #009246 33%, white 33%, white 67%, #ce2b37 67%); }
 
 .players-grid {
     display: grid;
@@ -436,23 +589,23 @@ nav .container {
 
 .player-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     transition: all 0.3s;
     position: relative;
 }
 
 .player-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
 .player-image {
     height: 200px;
     background-size: cover;
     background-position: center;
-    background-color: #2c3e50;
+    background-color: var(--world-dark);
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -474,21 +627,22 @@ nav .container {
     right: 15px;
     background: rgba(0,0,0,0.8);
     color: white;
-    padding: 5px 15px;
+    padding: 8px 15px;
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .player-price {
     position: absolute;
     bottom: 15px;
     right: 15px;
-    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
     color: white;
-    padding: 8px 15px;
-    border-radius: 8px;
-    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 800;
     font-size: 18px;
 }
 
@@ -498,9 +652,9 @@ nav .container {
 
 .player-name {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 10px;
-    color: #2c3e50;
+    color: var(--world-dark);
 }
 
 .player-details {
@@ -512,155 +666,24 @@ nav .container {
 }
 
 .player-team {
-    background: #f1f2f6;
-    padding: 5px 10px;
-    border-radius: 5px;
+    background: #f8f9fa;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: 600;
 }
 
 .player-position {
-    background: #27ae60;
+    background: var(--world-orange);
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-.player-stats {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    font-size: 12px;
-}
-
-.player-stats .stat {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #7f8c8d;
-}
-
-.player-stats .stat i {
-    color: #f1c40f;
-}
-
-.player-card .btn-add-cart {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(90deg, #27ae60, #2ecc71);
-    color: white;
-    border: none;
+    padding: 5px 12px;
     border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.player-card .btn-add-cart:hover {
-    opacity: 0.9;
-}
-
-/* Styles pour les drapeaux */
-.player-flag {
-    display: inline-block;
-    width: 20px;
-    height: 15px;
-    margin-right: 5px;
-    border-radius: 2px;
-    vertical-align: middle;
-}
-
-.flag-brazil { background: linear-gradient(135deg, #009c3b 50%, #ffdf00 50%); }
-.flag-argentina { background: linear-gradient(to bottom, #75aadb 33%, white 33%, white 67%, #75aadb 67%); }
-.flag-italy { background: linear-gradient(to right, #009246 33%, white 33%, white 67%, #ce2b37 67%); }
-.flag-germany { background: linear-gradient(to bottom, black 33%, #dd0000 33%, #dd0000 67%, #ffcc00 67%); }
-.flag-switzerland { background: #d52b1e; position: relative; }
-.flag-switzerland::before {
-    content: '+';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    font-size: 10px;
-}
-
-/* Stats détaillées */
-.player-stats-detailed {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 15px 0;
-    font-size: 12px;
-}
-
-.stat-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.stat-label-detailed {
-    min-width: 70px;
-    font-weight: 600;
-    color: #333;
-}
-
-.stat-bar-container {
-    flex: 1;
-    height: 8px;
-    background: #ecf0f1;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.stat-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #27ae60, #2ecc71);
-    border-radius: 4px;
-}
-
-.stat-value {
-    min-width: 25px;
     font-weight: 700;
-    color: #2c3e50;
-}
-
-/* Pour les gardiens */
-.stat-bar-fill.gk { background: linear-gradient(90deg, #3498db, #2980b9); }
-.stat-bar-fill.def { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
-.stat-bar-fill.mid { background: linear-gradient(90deg, #f39c12, #e67e22); }
-.stat-bar-fill.att { background: linear-gradient(90deg, #e74c3c, #c0392b); }
-
-/* Badges de rareté */
-.player-card .player-rarity[data-rarity="GOAT"] {
-    background: linear-gradient(90deg, #f1c40f, #e67e22);
-}
-
-.player-card .player-rarity[data-rarity="Icon"] {
-    background: linear-gradient(90deg, #9b59b6, #8e44ad);
-}
-
-.player-card .player-rarity[data-rarity="Phénomène"] {
-    background: linear-gradient(90deg, #e74c3c, #c0392b);
-}
-
-.player-card .player-rarity[data-rarity="Ultra Rare"] {
-    background: linear-gradient(90deg, #3498db, #2980b9);
-}
-
-.player-card .player-rarity[data-rarity="Super Rare"] {
-    background: linear-gradient(90deg, #2ecc71, #27ae60);
-}
-
-.player-card .player-rarity[data-rarity="Rare"] {
-    background: linear-gradient(90deg, #f39c12, #d35400);
 }
 
 /* Section Pokémon */
 .pokemon-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(135deg, var(--world-red) 0%, var(--world-orange) 100%);
     color: white;
 }
 
@@ -672,7 +695,7 @@ nav .container {
 .pokemon-header h2 {
     font-size: 42px;
     margin-bottom: 15px;
-    color: #ffcb05;
+    color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
@@ -687,7 +710,6 @@ nav .container {
     margin: 0 auto;
 }
 
-/* Contrôles Pokémon */
 .pokemon-controls {
     display: flex;
     justify-content: space-between;
@@ -704,7 +726,7 @@ nav .container {
 }
 
 .type-filter {
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
     border-radius: 25px;
     color: white;
@@ -713,11 +735,16 @@ nav .container {
     transition: all 0.3s;
     font-size: 14px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
 }
 
-.type-filter.active {
+.type-filter.active,
+.type-filter:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    background: white;
+    color: var(--world-red);
 }
 
 .pokemon-search {
@@ -729,7 +756,7 @@ nav .container {
     padding: 12px 20px;
     border: none;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255,255,255,0.9);
     color: #333;
     font-size: 14px;
     min-width: 250px;
@@ -739,13 +766,12 @@ nav .container {
     padding: 12px 20px;
     border: none;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255,255,255,0.9);
     color: #333;
     font-size: 14px;
     cursor: pointer;
 }
 
-/* Stats Pokémon */
 .pokemon-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -761,34 +787,32 @@ nav .container {
     text-align: center;
 }
 
-.stat-value {
+.pokemon-stat .stat-value {
     display: block;
     font-size: 36px;
-    font-weight: 700;
-    color: #ffcb05;
+    font-weight: 800;
+    color: white;
     margin-bottom: 5px;
 }
 
-.stat-label {
+.pokemon-stat .stat-label {
     font-size: 14px;
     opacity: 0.8;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Grille Pokémon */
 .pokemon-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
-    margin-bottom: 60px;
 }
 
 .pokemon-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     overflow: hidden;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255,255,255,0.2);
     transition: all 0.3s;
     backdrop-filter: blur(10px);
     position: relative;
@@ -796,8 +820,8 @@ nav .container {
 
 .pokemon-card:hover {
     transform: translateY(-10px);
-    border-color: #ffcb05;
-    box-shadow: 0 20px 40px rgba(255, 203, 5, 0.3);
+    border-color: white;
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
 }
 
 .pokemon-card-header {
@@ -833,31 +857,14 @@ nav .container {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: rgba(255, 203, 5, 0.9);
-    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--world-red);
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 700;
 }
 
-.pokemon-card-hp {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(231, 76, 60, 0.9);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.pokemon-card-hp i {
-    margin-right: 5px;
-}
-
-/* Corps de la carte */
 .pokemon-card-body {
     padding: 20px;
 }
@@ -871,8 +878,8 @@ nav .container {
 
 .pokemon-card-name h3 {
     font-size: 20px;
-    font-weight: 700;
-    color: #ffcb05;
+    font-weight: 800;
+    color: white;
 }
 
 .pokemon-card-generation {
@@ -880,6 +887,7 @@ nav .container {
     background: rgba(255, 255, 255, 0.2);
     padding: 4px 10px;
     border-radius: 10px;
+    color: white;
 }
 
 .pokemon-card-set {
@@ -890,45 +898,18 @@ nav .container {
     justify-content: space-between;
 }
 
-.pokemon-card-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.detail-item {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.detail-label {
-    display: block;
-    font-size: 12px;
-    opacity: 0.7;
-    margin-bottom: 5px;
-}
-
-.detail-value {
-    display: block;
-    font-weight: 600;
-    font-size: 14px;
-}
-
 .pokemon-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .pokemon-card-price {
     font-size: 24px;
-    font-weight: 700;
-    color: #ffcb05;
+    font-weight: 800;
+    color: white;
 }
 
 .pokemon-card-price .currency {
@@ -937,12 +918,12 @@ nav .container {
 }
 
 .btn-pokemon-add {
-    background: linear-gradient(90deg, #ffcb05, #f1c40f);
-    color: #2c3e50;
+    background: white;
+    color: var(--world-red);
     border: none;
     padding: 12px 25px;
     border-radius: 10px;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
@@ -952,765 +933,13 @@ nav .container {
 
 .btn-pokemon-add:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 203, 5, 0.4);
-}
-
-/* Éditions Pokémon */
-.pokemon-sets {
-    margin-top: 60px;
-}
-
-.pokemon-sets h3 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #ffcb05;
-}
-
-.pokemon-sets h3 i {
-    margin-right: 10px;
-}
-
-.sets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-}
-
-.set-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    border: 2px solid transparent;
-    transition: all 0.3s;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-}
-
-.set-card:hover {
-    border-color: #ffcb05;
-    transform: translateY(-5px);
-}
-
-.set-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-}
-
-.set-name {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #ffcb05;
-}
-
-.set-count {
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-/* Types Pokémon - Couleurs */
-.type-psychic { background: #f85888; }
-.type-water { background: #6890f0; }
-.type-fire { background: #f08030; }
-.type-grass { background: #78c850; }
-.type-electric { background: #f8d030; }
-.type-dragon { background: #7038f8; }
-.type-metal { background: #b8b8d0; }
-.type-fairy { background: #ee99ac; }
-.type-fighting { background: #c03028; }
-.type-ghost { background: #705898; }
-.type-ice { background: #98d8d8; }
-.type-normal { background: #a8a878; }
-.type-poison { background: #a040a0; }
-.type-rock { background: #b8a038; }
-.type-dark { background: #705848; }
-.type-ground { background: #e0c068; }
-.type-flying { background: #a890f0; }
-.type-bug { background: #a8b820; }
-.type-steel { background: #b8b8d0; }
-
-/* Badges de rareté */
-.rarity-common { background: #95a5a6 !important; }
-.rarity-uncommon { background: #2ecc71 !important; }
-.rarity-rare { background: #3498db !important; }
-.rarity-holo { background: #9b59b6 !important; }
-.rarity-ultra { background: #f1c40f !important; color: #2c3e50 !important; }
-.rarity-secret { background: #e74c3c !important; }
-.rarity-mythical { background: linear-gradient(90deg, #ff6b6b, #ee5a24) !important; }
-
-/* Section Collection */
-.collection-section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-    color: white;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.section-header h2 {
-    font-size: 42px;
-    margin-bottom: 15px;
-    color: #f1c40f;
-}
-
-.section-header h2 i {
-    margin-right: 15px;
-}
-
-.section-header p {
-    font-size: 18px;
-    opacity: 0.8;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.collection-filters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.filter-group {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.collection-filter {
-    padding: 12px 25px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-}
-
-.collection-filter.active,
-.collection-filter:hover {
-    background: #f1c40f;
-    color: #2c3e50;
-    border-color: #f1c40f;
-}
-
-.sort-by select {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 12px 25px;
-    border-radius: 50px;
-}
-
-.sort-by select option {
-    background: #2c3e50;
-    color: white;
-}
-
-.collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
-
-.collection-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-}
-
-.collection-card:hover {
-    transform: translateY(-10px);
-    border-color: #f1c40f;
-    box-shadow: 0 20px 40px rgba(241, 196, 15, 0.2);
-}
-
-.collection-card-header {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-}
-
-.collection-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.collection-card:hover .collection-card-image {
-    transform: scale(1.1);
-}
-
-.collection-card-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #f1c40f;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.collection-card-limited {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    background: rgba(231, 76, 60, 0.9);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.collection-card-body {
-    padding: 25px;
-}
-
-.collection-card-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #f1c40f;
-}
-
-.collection-card-subtitle {
-    font-size: 14px;
-    opacity: 0.8;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.collection-card-year {
-    color: #3498db;
-    font-weight: 600;
-}
-
-.collection-card-set {
-    color: #2ecc71;
-    font-weight: 600;
-}
-
-.collection-card-description {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    opacity: 0.9;
-}
-
-.collection-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.collection-card-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: #f1c40f;
-}
-
-.collection-card-price .currency {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.btn-collection-add {
-    background: linear-gradient(90deg, #f1c40f, #f39c12);
-    color: #2c3e50;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-collection-add:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
-}
-
-.collection-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.stat-box {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
-}
-
-.stat-box:hover {
-    border-color: #f1c40f;
-    transform: translateY(-5px);
-}
-
-.stat-number {
-    font-size: 48px;
-    font-weight: 700;
-    color: #f1c40f;
-    margin-bottom: 10px;
-}
-
-.stat-label {
-    font-size: 16px;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Badges spécifiques */
-.badge-legend {
-    background: linear-gradient(90deg, #9b59b6, #8e44ad) !important;
-}
-
-.badge-iconic {
-    background: linear-gradient(90deg, #f1c40f, #e67e22) !important;
-}
-
-.badge-premium {
-    background: linear-gradient(90deg, #e74c3c, #c0392b) !important;
-}
-
-.badge-rising {
-    background: linear-gradient(90deg, #2ecc71, #27ae60) !important;
-}
-
-.badge-complete {
-    background: linear-gradient(90deg, #3498db, #2980b9) !important;
-}
-
-/* Section Moments */
-.moments-section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-}
-
-.moments-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.moments-header h2 {
-    font-size: 42px;
-    margin-bottom: 15px;
-    color: #f1c40f;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-.moments-header h2 i {
-    margin-right: 15px;
-}
-
-.moments-header p {
-    font-size: 18px;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Timeline et filtres */
-.moments-timeline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.timeline-filter {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.timeline-btn {
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.timeline-btn.active,
-.timeline-btn:hover {
-    background: #f1c40f;
-    color: #1a1a2e;
-    border-color: #f1c40f;
-}
-
-.competition-filter {
-    display: flex;
-    gap: 15px;
-}
-
-.competition-filter select {
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
-    color: white;
-    cursor: pointer;
-    min-width: 200px;
-}
-
-.competition-filter select option {
-    background: #1a1a2e;
-    color: white;
-}
-
-/* Stats Moments */
-.moments-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.moment-stat {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.stat-icon {
-    font-size: 40px;
-    background: rgba(241, 196, 15, 0.2);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.stat-content {
-    flex: 1;
-}
-
-.stat-number {
-    font-size: 32px;
-    font-weight: 700;
-    color: #f1c40f;
-    line-height: 1;
-}
-
-.stat-label {
-    font-size: 14px;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 5px;
-}
-
-/* Grille Moments */
-.moments-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
-
-.moment-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid transparent;
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-    position: relative;
-}
-
-.moment-card:hover {
-    transform: translateY(-10px);
-    border-color: #f1c40f;
-    box-shadow: 0 20px 40px rgba(241, 196, 15, 0.3);
-}
-
-.moment-card-header {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-}
-
-.moment-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.moment-card:hover .moment-card-image {
-    transform: scale(1.1);
-}
-
-.moment-card-competition {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #f1c40f;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.moment-card-score {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(231, 76, 60, 0.9);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.moment-card-hero {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-
-.hero-image {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #f1c40f;
-}
-
-.hero-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #f1c40f;
-}
-
-/* Corps de la carte */
-.moment-card-body {
-    padding: 25px;
-}
-
-.moment-card-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.moment-card-subtitle {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #bdc3c7;
-    margin-bottom: 15px;
-}
-
-.moment-card-date {
-    background: rgba(52, 152, 219, 0.2);
-    padding: 5px 10px;
-    border-radius: 10px;
-}
-
-.moment-card-stadium {
-    background: rgba(46, 204, 113, 0.2);
-    padding: 5px 10px;
-    border-radius: 10px;
-}
-
-.moment-card-description {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #ecf0f1;
-    margin-bottom: 20px;
-    min-height: 60px;
-}
-
-.moment-card-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-    font-size: 12px;
-}
-
-.stat-item {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.stat-value {
-    display: block;
-    font-weight: 700;
-    color: #f1c40f;
-    font-size: 14px;
-}
-
-.stat-label-detailed {
-    font-size: 11px;
-    opacity: 0.7;
-    margin-top: 3px;
-}
-
-.moment-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.moment-card-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: #f1c40f;
-}
-
-.moment-card-price .currency {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.btn-moment-add {
-    background: linear-gradient(90deg, #f1c40f, #f39c12);
-    color: #1a1a2e;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-moment-add:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
-}
-
-/* Moment vedette */
-.featured-moment {
-    background: linear-gradient(135deg, rgba(241, 196, 15, 0.1), rgba(243, 156, 18, 0.1));
-    border-radius: 20px;
-    padding: 40px;
-    margin-top: 60px;
-}
-
-.featured-content h3 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: #f1c40f;
-}
-
-.featured-content h3 i {
-    margin-right: 10px;
-}
-
-/* Éditions spéciales */
-.moment-card-edition {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(155, 89, 182, 0.9);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-/* Badges de rareté */
-.badge-champions {
-    background: linear-gradient(90deg, #f1c40f, #e67e22) !important;
-    color: #1a1a2e !important;
-}
-
-.badge-iconic {
-    background: linear-gradient(90deg, #9b59b6, #8e44ad) !important;
-}
-
-.badge-historic {
-    background: linear-gradient(90deg, #3498db, #2980b9) !important;
-}
-
-.badge-record {
-    background: linear-gradient(90deg, #e74c3c, #c0392b) !important;
-}
-
-.badge-miracle {
-    background: linear-gradient(90deg, #2ecc71, #27ae60) !important;
-}
-
-/* Animation pour le moment vedette */
-@keyframes pulseFeatured {
-    0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
-}
-
-.featured-card .moment-card {
-    animation: pulseFeatured 2s infinite;
-    max-width: 600px;
-    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Section Clubs */
 .clubs-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+    background: linear-gradient(135deg, var(--world-dark) 0%, #34495e 100%);
     color: white;
 }
 
@@ -1722,12 +951,13 @@ nav .container {
 .clubs-header h2 {
     font-size: 42px;
     margin-bottom: 15px;
-    color: #ff9f43;
+    color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .clubs-header h2 i {
     margin-right: 15px;
+    color: var(--world-red);
 }
 
 .clubs-header p {
@@ -1737,18 +967,13 @@ nav .container {
     margin: 0 auto;
 }
 
-/* Contrôles Clubs */
 .clubs-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 40px;
-    flex-wrap: wrap;
-    gap: 20px;
 }
 
 .continent-filter {
     display: flex;
+    justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
 }
@@ -1765,36 +990,17 @@ nav .container {
     display: flex;
     align-items: center;
     gap: 10px;
+    backdrop-filter: blur(10px);
 }
 
 .continent-btn.active,
 .continent-btn:hover {
-    background: #ff9f43;
-    color: #0c2461;
-    border-color: #ff9f43;
-}
-
-.league-filter {
-    display: flex;
-    gap: 15px;
-}
-
-.league-filter select {
-    padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
+    background: var(--world-red);
     color: white;
-    cursor: pointer;
-    min-width: 200px;
+    border-color: var(--world-red);
+    transform: translateY(-2px);
 }
 
-.league-filter select option {
-    background: #0c2461;
-    color: white;
-}
-
-/* Stats Clubs */
 .clubs-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1814,7 +1020,7 @@ nav .container {
 
 .club-stat .stat-icon {
     font-size: 40px;
-    background: rgba(255, 159, 67, 0.2);
+    background: rgba(255, 107, 107, 0.2);
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -1829,8 +1035,8 @@ nav .container {
 
 .club-stat .stat-number {
     font-size: 32px;
-    font-weight: 700;
-    color: #ff9f43;
+    font-weight: 800;
+    color: var(--world-red);
     line-height: 1;
 }
 
@@ -1842,19 +1048,17 @@ nav .container {
     margin-top: 5px;
 }
 
-/* Grille Clubs */
 .clubs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
-    margin-bottom: 60px;
 }
 
 .club-card {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     overflow: hidden;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255,255,255,0.1);
     transition: all 0.3s;
     backdrop-filter: blur(10px);
     position: relative;
@@ -1862,8 +1066,8 @@ nav .container {
 
 .club-card:hover {
     transform: translateY(-10px);
-    border-color: #ff9f43;
-    box-shadow: 0 20px 40px rgba(255, 159, 67, 0.3);
+    border-color: var(--world-red);
+    box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
 }
 
 .club-card-header {
@@ -1888,7 +1092,7 @@ nav .container {
     top: 15px;
     left: 15px;
     background: rgba(0, 0, 0, 0.8);
-    color: #ff9f43;
+    color: var(--world-red);
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 12px;
@@ -1896,17 +1100,6 @@ nav .container {
     display: flex;
     align-items: center;
     gap: 5px;
-}
-
-.club-card-stars {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #ffd700;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 14px;
 }
 
 .club-card-founded {
@@ -1921,28 +1114,13 @@ nav .container {
     font-weight: 600;
 }
 
-.club-card-stadium {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(46, 204, 113, 0.9);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    max-width: 150px;
-    text-align: center;
-}
-
-/* Corps de la carte Club */
 .club-card-body {
     padding: 25px;
 }
 
 .club-card-title {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     margin-bottom: 10px;
     color: white;
     display: flex;
@@ -1952,37 +1130,20 @@ nav .container {
 
 .club-card-league {
     font-size: 14px;
-    background: rgba(255, 159, 67, 0.2);
+    background: rgba(255, 107, 107, 0.2);
     padding: 5px 10px;
     border-radius: 10px;
-    color: #ff9f43;
+    color: var(--world-red);
 }
 
 .club-card-description {
     font-size: 14px;
     line-height: 1.6;
-    color: #ecf0f1;
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
     min-height: 40px;
 }
 
-.club-card-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.feature-tag {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 11px;
-    color: #ff9f43;
-    border: 1px solid rgba(255, 159, 67, 0.3);
-}
-
-/* Stats Club */
 .club-card-stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -2000,8 +1161,8 @@ nav .container {
 .club-stat-value {
     display: block;
     font-size: 24px;
-    font-weight: 700;
-    color: #ff9f43;
+    font-weight: 800;
+    color: var(--world-red);
     line-height: 1;
 }
 
@@ -2009,7 +1170,7 @@ nav .container {
     font-size: 12px;
     opacity: 0.8;
     margin-top: 5px;
-    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .club-card-footer {
@@ -2022,8 +1183,8 @@ nav .container {
 
 .club-card-price {
     font-size: 28px;
-    font-weight: 700;
-    color: #ff9f43;
+    font-weight: 800;
+    color: var(--world-red);
 }
 
 .club-card-price .currency {
@@ -2031,21 +1192,13 @@ nav .container {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.club-card-edition {
-    font-size: 12px;
-    background: rgba(155, 89, 182, 0.3);
-    padding: 5px 10px;
-    border-radius: 10px;
-    color: #d6a2e8;
-}
-
 .btn-club-add {
-    background: linear-gradient(90deg, #ff9f43, #ffaf60);
-    color: #0c2461;
+    background: var(--world-red);
+    color: white;
     border: none;
     padding: 12px 25px;
     border-radius: 10px;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
@@ -2055,110 +1208,178 @@ nav .container {
 
 .btn-club-add:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 159, 67, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
-/* Par Ligue */
-.clubs-leagues {
-    margin-top: 60px;
+/* Section Moments */
+.moments-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
 }
 
-.clubs-leagues h3 {
+.moments-header {
     text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #ff9f43;
+    margin-bottom: 50px;
 }
 
-.clubs-leagues h3 i {
-    margin-right: 10px;
+.moments-header h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    color: var(--world-red);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.leagues-showcase {
+.moments-header h2 i {
+    margin-right: 15px;
+}
+
+.moments-header p {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.moments-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
 }
 
-.league-card {
+.moment-card {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    border: 2px solid transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.1);
     transition: all 0.3s;
-    cursor: pointer;
     backdrop-filter: blur(10px);
+    position: relative;
 }
 
-.league-card:hover {
-    border-color: #ff9f43;
-    transform: translateY(-5px);
+.moment-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--world-red);
+    box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
 }
 
-.league-logo {
-    font-size: 48px;
+.moment-card-header {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.moment-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.moment-card:hover .moment-card-image {
+    transform: scale(1.1);
+}
+
+.moment-card-competition {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--world-red);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.moment-card-score {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--world-red);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.moment-card-body {
+    padding: 25px;
+}
+
+.moment-card-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.moment-card-subtitle {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 15px;
 }
 
-.league-name {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #ff9f43;
+.moment-card-date {
+    background: rgba(52, 152, 219, 0.2);
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 
-.league-count {
+.moment-card-stadium {
+    background: rgba(46, 204, 113, 0.2);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.moment-card-description {
     font-size: 14px;
-    opacity: 0.8;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    min-height: 60px;
 }
 
-/* Badges de rareté */
-.badge-legendary {
-    background: linear-gradient(90deg, #ff9f43, #e67e22) !important;
-    color: #0c2461 !important;
+.moment-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.badge-historic {
-    background: linear-gradient(90deg, #3498db, #2980b9) !important;
+.moment-card-price {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--world-red);
 }
 
-.badge-elite {
-    background: linear-gradient(90deg, #9b59b6, #8e44ad) !important;
-}
-
-.badge-champion {
-    background: linear-gradient(90deg, #2ecc71, #27ae60) !important;
-}
-
-.badge-rising {
-    background: linear-gradient(90deg, #e74c3c, #c0392b) !important;
-}
-
-.badge-modern {
-    background: linear-gradient(90deg, #1abc9c, #16a085) !important;
-}
-
-/* Étoiles */
-.star-rating {
-    display: inline-flex;
-    gap: 2px;
-}
-
-.star {
-    color: #ffd700;
+.moment-card-price .currency {
     font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-/* Animation pour les clubs légendaires */
-@keyframes legendaryGlow {
-    0% { box-shadow: 0 0 5px #ff9f43; }
-    50% { box-shadow: 0 0 20px #ff9f43, 0 0 30px #ff9f43; }
-    100% { box-shadow: 0 0 5px #ff9f43; }
+.btn-moment-add {
+    background: var(--world-red);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.club-card[data-stars="5"] {
-    animation: legendaryGlow 2s infinite;
+.btn-moment-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
 /* Section Hockey */
@@ -2187,33 +1408,6 @@ nav .container {
     margin-right: auto;
 }
 
-.subcategories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
-
-.subcategory {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s;
-}
-
-.subcategory:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.subcategory h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #bbdefb;
-}
-
 .hockey-stats {
     display: flex;
     justify-content: center;
@@ -2221,46 +1415,55 @@ nav .container {
     flex-wrap: wrap;
 }
 
-.stat {
+.hockey-stats .stat {
     text-align: center;
 }
 
-.stat .number {
+.hockey-stats .number {
     display: block;
     font-size: 48px;
-    font-weight: 700;
-    color: #bbdefb;
+    font-weight: 800;
+    color: white;
     margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.stat .label {
+.hockey-stats .label {
     font-size: 16px;
     opacity: 0.8;
 }
 
 /* CTA */
 .cta-players {
-    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    background: linear-gradient(135deg, var(--world-red) 0%, var(--world-orange) 100%);
     color: white;
-    padding: 80px 0;
+    padding: 100px 0;
     text-align: center;
 }
 
 .cta-players h2 {
-    font-size: 36px;
+    font-size: 42px;
     margin-bottom: 20px;
+    font-weight: 800;
 }
 
 .cta-players p {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 40px;
     opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.btn-primary {
-    background: white;
-    color: #27ae60;
-    border: none;
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
     padding: 18px 40px;
     border-radius: 50px;
     font-size: 18px;
@@ -2270,6 +1473,18 @@ nav .container {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    border: none;
+}
+
+.btn-primary {
+    background: white;
+    color: var(--world-red);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 3px solid white;
 }
 
 .btn-primary:hover {
@@ -2277,9 +1492,15 @@ nav .container {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
+.btn-secondary:hover {
+    background: white;
+    color: var(--world-red);
+    transform: translateY(-5px);
+}
+
 /* Footer */
 footer {
-    background: #2c3e50;
+    background: var(--world-dark);
     color: white;
     padding: 60px 0 30px;
 }
@@ -2294,7 +1515,40 @@ footer {
 .footer-section h3 {
     font-size: 20px;
     margin-bottom: 20px;
-    color: #667eea;
+    color: var(--world-red);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-logo i {
+    font-size: 32px;
+    color: var(--world-red);
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+    margin: 0;
+    background: linear-gradient(90deg, var(--world-red), var(--world-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-section p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.world-flags {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 24px;
 }
 
 .footer-section ul {
@@ -2306,13 +1560,18 @@ footer {
 }
 
 .footer-section a {
-    color: #bdc3c7;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer-section a:hover {
-    color: #667eea;
+    color: var(--world-red);
+}
+
+.footer-section i.fas {
+    margin-right: 10px;
+    color: var(--world-red);
 }
 
 .social {
@@ -2327,14 +1586,15 @@ footer {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     font-size: 18px;
     transition: all 0.3s;
+    color: white;
 }
 
 .social a:hover {
-    background: #667eea;
+    background: var(--world-red);
     transform: translateY(-3px);
 }
 
@@ -2358,24 +1618,31 @@ footer {
 }
 
 .newsletter button {
-    background: #667eea;
+    background: var(--world-red);
     color: white;
     border: none;
     padding: 12px 20px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
+    font-weight: 600;
 }
 
 .newsletter button:hover {
-    background: #764ba2;
+    background: var(--world-orange);
+}
+
+.newsletter-note {
+    font-size: 12px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 30px;
     border-top: 1px solid rgba(255,255,255,0.1);
-    color: #bdc3c7;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-links {
@@ -2383,148 +1650,25 @@ footer {
 }
 
 .footer-links a {
-    color: #bdc3c7;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     margin: 0 10px;
     transition: color 0.3s;
 }
 
 .footer-links a:hover {
-    color: #667eea;
+    color: var(--world-red);
 }
 
-/* Modal des stats */
-.stats-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    padding: 20px;
+.language-note {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.modal-content {
-    background: white;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    background: linear-gradient(90deg, #2c3e50, #4a6491);
-    color: white;
-    border-radius: 20px 20px 0 0;
-}
-
-.modal-header h3 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 36px;
-    cursor: pointer;
-    line-height: 1;
-}
-
-.modal-body {
-    padding: 30px;
-}
-
-.player-profile {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
-.profile-image img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 3px solid #2c3e50;
-}
-
-.profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.info-item {
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-.info-item strong {
-    color: #2c3e50;
-    margin-right: 10px;
-}
-
-.price-highlight {
-    color: #e74c3c;
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.stats-radar {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-}
-
-.player-description-full {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.player-description-full p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.modal-footer {
-    padding: 20px 30px;
-    background: #f8f9fa;
-    border-radius: 0 0 20px 20px;
-    text-align: center;
-}
-
-.btn-buy-now {
-    background: linear-gradient(90deg, #27ae60, #2ecc71);
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.btn-buy-now:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+.language-note i {
+    margin-right: 5px;
+    color: var(--world-red);
 }
 
 /* Responsive */
@@ -2551,34 +1695,35 @@ footer {
         gap: 10px;
     }
     
-    .player-stats-detailed {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     .pokemon-controls {
         flex-direction: column;
         align-items: stretch;
     }
     
-    .moments-timeline {
+    .cta-buttons {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
     }
     
-    .clubs-controls {
-        flex-direction: column;
-        align-items: stretch;
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        gap: 30px;
     }
     
-    .league-filter {
-        flex-direction: column;
+    .hero-stats .number {
+        font-size: 32px;
     }
     
-    .player-profile {
+    .categories-grid {
         grid-template-columns: 1fr;
     }
     
-    .club-card-stats {
+    .players-grid, .pokemon-grid, .clubs-grid, .moments-grid {
         grid-template-columns: 1fr;
     }
-}styl
+}
